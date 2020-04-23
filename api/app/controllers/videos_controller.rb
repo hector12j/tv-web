@@ -1,13 +1,13 @@
 class VideosController < ApplicationController
 
   def index
-    videos = Video.all
-    render json: videos.includes(:episodes)
+    videos = Video.all.order(created_at: :asc)
+    render json: videos
   end
 
   def show
     if Video.exists?(params[:id])
-      video = Video.includes('episodes').find(params[:id])
+      video = Video.find(params[:id])
       render json: video
     else
       render json: {'messaje': 'Video not found'}
@@ -17,7 +17,7 @@ class VideosController < ApplicationController
   def create
     video = Video.new(video_params)
     if video.save
-      render json: video, status: :created, location: video
+      render json: video
     else
       render json: video.errors, status: :unprocessable_entity
     end
@@ -38,6 +38,16 @@ class VideosController < ApplicationController
     else
       render json: {'messaje': 'Video not found'}
     end
+  end
+
+  def movies
+    videos = Video.where(video_type: 'movie').order(created_at: :asc)
+    render json: videos
+  end
+
+  def seasons
+    videos = Video.where(video_type: 'season').order(created_at: :asc).includes(:episodes).order(number: :asc)
+    render json: videos
   end
 
   private

@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(version: 2020_04_22_154524) do
   end
 
   create_table "stores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "users_id"
-    t.bigint "videos_id"
+    t.bigint "user_id"
+    t.bigint "video_id"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_stores_on_users_id"
-    t.index ["videos_id"], name: "index_stores_on_videos_id"
+    t.index ["user_id"], name: "index_stores_on_user_id"
+    t.index ["video_id"], name: "index_stores_on_video_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -50,6 +50,6 @@ ActiveRecord::Schema.define(version: 2020_04_22_154524) do
   end
 
   add_foreign_key "episodes", "videos"
-  add_foreign_key "stores", "users", column: "users_id"
-  add_foreign_key "stores", "videos", column: "videos_id"
+  add_foreign_key "stores", "users"
+  add_foreign_key "stores", "videos"
 end
