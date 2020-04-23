@@ -31,9 +31,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     if User.exists?(params[:id])
-      render json: User.update(params[:id], user_params)
+      render json: User.destroy(params[:id])
     else
       render json: {'messaje': 'User not found'}
     end
@@ -44,5 +44,5 @@ class UsersController < ApplicationController
     def user_params
         params.permit(:email)
     end
-    
+
 end

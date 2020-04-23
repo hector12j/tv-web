@@ -5,7 +5,7 @@ class CreateVideos < ActiveRecord::Migration[5.2]
       t.string :plot
       t.string :quality, default: "HD"
       t.float :price, default: 2.99
-      t.string :type
+      t.string :video_type
       t.integer :number
       t.timestamps
     end

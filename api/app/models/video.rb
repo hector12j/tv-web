@@ -1,7 +1,7 @@
 class Video < ApplicationRecord
 	validates :title, presence: true
-	validates :type, presence: true, 
-	validates :number
-	has_many :episode
-	has_many :user_video
+	validates :video_type, presence: true
+	validates :number, presence: true
+	has_many :episodes 
+	has_many :stores
 end

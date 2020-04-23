@@ -1,6 +1,6 @@
 class Episode < ApplicationRecord
+	belongs_to :video
 	validates :title, presence: true
 	validates :number, presence: true
-	validates :videos_id, presence: true
-	belongs_to :video
+	validates :video_id, presence: true
 end
